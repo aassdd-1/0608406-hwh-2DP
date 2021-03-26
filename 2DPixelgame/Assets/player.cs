@@ -11,20 +11,19 @@ public class player : MonoBehaviour
     public float speed = 10.5f;
     public bool isDead = false;
     public string cName = "貓咪";
-    public Fixedjoystick joystick;
+    public FixedJoystick joystick;
     public Transform tra;
     public Animator ani;
-    public
 
     private void Move()
-    { 
-        print("移動")
+    {
+        print("移動");
         float h = joystick.Horizontal;
         print("水平" + h);
         float v = joystick.Vertical;
         print("垂直" + v);
-        
-        tra.Thanslate(h*speed*Time.deltaTime, v * speed * Time.deltaTime,0)
+
+        tra.Translate(h * speed * Time.deltaTime, v * speed * Time.deltaTime, 0);
         ani.SetFloat("水平", h);
         ani.SetFloat("垂直", v);
 

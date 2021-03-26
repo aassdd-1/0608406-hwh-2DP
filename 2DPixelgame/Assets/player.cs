@@ -41,8 +41,9 @@ public class player : MonoBehaviour
     {
        print("攻擊");
 
-        Physics2D.CircleCast(transform.position, rabgeAttack, -transform.up);
 
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, rabgeAttack, -transform.up,0, 1 << 8 );
+        print("碰到的物件:" + hit.collider.name);
 
     }
     private void Hit()

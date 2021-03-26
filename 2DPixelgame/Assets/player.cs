@@ -14,6 +14,15 @@ public class player : MonoBehaviour
     public FixedJoystick joystick;
     public Transform tra;
     public Animator ani;
+    public float rabgeAttack = 2.5f;
+    //事件:繪製圖示
+    private void OnDrawGizmos()
+    {
+        //指定圖示顏色(紅,綠,藍,透明)
+        Gizmos.color = new Color(1, 0, 0, 0.4f);
+        //繪製圖示 球體(中心點,半徑)
+        Gizmos.DrawWireSphere(transform.position, rabgeAttack);
+    }
 
     private void Move()
     {
@@ -28,8 +37,12 @@ public class player : MonoBehaviour
         ani.SetFloat("垂直", v);
 
     }
-    private void Attack()
+    public void Attack()
     {
+       print("攻擊");
+
+        Physics2D.CircleCast(transform.position, rabgeAttack, -transform.up);
+
 
     }
     private void Hit()

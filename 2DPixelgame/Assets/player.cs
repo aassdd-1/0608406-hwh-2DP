@@ -54,12 +54,13 @@ public class player : MonoBehaviour
         aud.PlayOneShot(soundAttack, 0.5f);
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, rabgeAttack, -transform.up,0, 1 << 8 );
         print("碰到的物件:" + hit.collider.name);
-        if (hit.collider.tag == "道具") Destroy(hit.collider.gameObject);
+        if (hit && hit.collider.tag == "道具") Destroy(hit.collider.gameObject);
+
 
     }
-    private void Hit()
+    private void hit()
     {
-
+        
     }
     private void Dead()
     {

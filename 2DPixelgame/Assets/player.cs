@@ -76,9 +76,9 @@ public class player : MonoBehaviour
     {
         Move();
     }
-
+    [Header("金幣音效")]
     public AudioClip soundEat;
-
+    [Header("金幣文字")]
     public Text texrCoin;
 
     private int coin;
@@ -91,7 +91,7 @@ public class player : MonoBehaviour
             coin++;
             aud.PlayOneShot(soundEat);
             Destroy(collision.gameObject);
-            texrCoin.text = "金幣" + coin;
+            texrCoin.text = "金幣:" + coin;
             //print(collision.gameObject);
         }
     }

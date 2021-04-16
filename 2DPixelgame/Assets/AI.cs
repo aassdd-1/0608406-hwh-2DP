@@ -10,8 +10,15 @@ public class AI : MonoBehaviour
     public float rangeAttack = 0.5f;
     [Header("移動速度"), Range(0, 50)]
     public float speed = 2;
+    [Header("攻擊特效")]
+    public ParticleSystem psAttack;
+    [Header("攻擊冷卻")]
+    public float cdAttack = 3;
+    [Header("攻擊力")]
+    public float attack = 20;
 
     private Transform player;
+    private float timer;
 
     private void Start()
     {
@@ -45,13 +52,33 @@ public class AI : MonoBehaviour
         //距離 等於 三維向量 的 距離(A點,B點)
         float dis = Vector3.Distance(transform.position, player.position);
         //如果 距離 小於等於 追蹤範圍 才開始追蹤
-        if (dis <= rangetrack)
+        if (dis <= rangeAttack)
         {
-            transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
+            Attack();
+
+        }
+        else if (dis<=rangetrack)
+        {
+            
+            transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
 
         //print("距離" + dis);
+    }
+
+    private void Attack()
+    {
+        timer += Time.deltaTime;
+
+
+        if (timer >= cdAttack)
+        {
+            timer = 0;
+            psAttack.Play();
+        }
+
+
     }
 
 

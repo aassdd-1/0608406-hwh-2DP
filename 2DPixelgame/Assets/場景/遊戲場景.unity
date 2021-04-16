@@ -646,6 +646,9 @@ MonoBehaviour:
   rangetrack: 2
   rangeAttack: 0.5
   speed: 2
+  psAttack: {fileID: 622812471}
+  cdAttack: 3
+  attack: 20
 --- !u!1 &150773197
 GameObject:
   m_ObjectHideFlags: 0

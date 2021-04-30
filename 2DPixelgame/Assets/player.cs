@@ -27,6 +27,13 @@ public class player : MonoBehaviour
     public AudioSource aud;
     [Header("攻擊特效")]
     public AudioClip andAttack;
+    [Header("血量")]
+    public float Blood = 200;
+    private float hpmax;
+    [Header("血條系統")]
+    public Hp hpmanager; 
+        
+
     //事件:繪製圖示
     private void OnDrawGizmos()
     {
@@ -60,9 +67,10 @@ public class player : MonoBehaviour
 
 
     }
-    private void hit()
+    public void hit(float damage)
     {
-        
+        Blood -= damage;
+        hpmanager.Updatehpbar(Blood, hpmax);
     }
     private void Dead()
     {
@@ -70,11 +78,11 @@ public class player : MonoBehaviour
     }
     private void Start()
     {
-        Move();
+        hpmax = Blood;
     }
     private void Update()
     {
-        Move();
+       Move();
     }
     [Header("金幣音效")]
     public AudioClip soundEat;

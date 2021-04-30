@@ -76,6 +76,8 @@ public class AI : MonoBehaviour
         {
             timer = 0;
             psAttack.Play();
+            Collider2D hit = Physics2D.OverlapCircle(transform.position, rangeAttack);
+            hit.GetComponent<player>().hit(attack);
         }
 
 

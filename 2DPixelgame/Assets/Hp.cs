@@ -3,27 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System .Collections:
 public class Hp : MonoBehaviour
 {
+    [Header("血條")]
     public Image Bar;
+    [Header("傷害數值")]
+    public RectTransform rectDamage;
     /// <summary>
     /// 血條跟最大值
     /// </summary>
     /// <param name="hp">當天血量</param>
     /// <param name="hpmax">血量最大值</param>
-    public void Updatehpbar(float hp,float hpmax)
+    public void Updatehpbar(float hp, float hpmax)
     {
         Bar.fillAmount = hp / hpmax;
     }
 
-    //internal static void Updatehpbar(Hp hp, float hpmax)
-    //{
-        //throw new NotImplementedException();
-    //}
+    public IEnumerator ShowDamagr()
+    {
+        RectTransform rect = Instantiate(rectDamage, transform);
+        rect.anchoredPosition = new Vector2(223, 88);
 
-    //public static implicit operator Hp(float v)
-    //{
-        //throw new NotImplementedException();
-    //}
+        float y = rect.anchoredPosition.y;
+
+        while ( y < 400)
+        {
+            y += 20;
+            rect.anchoredPosition = new Vector2(0, y);
+            yield return new WaitForSeconds(0.02F);
+
+
+        }
+
+    }
 }

@@ -71,6 +71,7 @@ public class player : MonoBehaviour
     {
         Blood -= damage;
         hpmanager.Updatehpbar(Blood, hpmax);
+        StartCoroutine(hpmanager.ShowDamagr());
     }
     private void Dead()
     {

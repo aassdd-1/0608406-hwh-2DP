@@ -17,11 +17,18 @@ public class AI : MonoBehaviour
     [Header("攻擊力")]
     public float attack = 20;
 
+    [Header("血量")]
+    public float Blood = 200;
+    private float hpmax;
+    [Header("血條系統")]
+    public Hp hpmanager;
+
     private Transform player;
     private float timer;
 
     private void Start()
     {
+        hpmax = Blood;
         player = GameObject.Find("主角").transform;
     }
 

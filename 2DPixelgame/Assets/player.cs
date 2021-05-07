@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//引用 介面 UI
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -45,8 +46,11 @@ public class player : MonoBehaviour
 
     private void Move()
     {
+        if (isDead) return;
+        
         //print("移動");
-        float h = joystick.Horizontal;
+        float horizontal = joystick.Horizontal;
+        float h = horizontal;
         //print("水平" + h);
         float v = joystick.Vertical;
         //print("垂直" + v);
@@ -59,7 +63,8 @@ public class player : MonoBehaviour
     //凡是設公開就一定要設Public
     public void Attack()
     {
-       print("攻擊");
+        if (isDead) return;
+        print("攻擊");
         aud.PlayOneShot(andAttack, 0.5f);
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, rabgeAttack, -transform.up,0, 1 << 8 );
         //print("碰到的物件:" + hit.collider.name);
@@ -71,11 +76,19 @@ public class player : MonoBehaviour
     {
         Blood -= damage;
         hpmanager.Updatehpbar(Blood, hpmax);
-        StartCoroutine(hpmanager.ShowDamagr());
+        StartCoroutine(hpmanager.ShowDamagr(damage));
+
+        if (Blood <= 0) Dead();
     }
     private void Dead()
     {
-
+        Blood = 0;
+        isDead = true;
+        Invoke("RePlay", 2);
+    }
+    private void RePiay()
+    {
+        SceneManager.LoadScene("遊戲場景");
     }
     private void Start()
     {

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System .Collections:
+//using System.Collections;
 public class Hp : MonoBehaviour
 {
     [Header("血條")]
@@ -20,10 +20,11 @@ public class Hp : MonoBehaviour
         Bar.fillAmount = hp / hpmax;
     }
 
-    public IEnumerator ShowDamagr()
+    public IEnumerator ShowDamagr(float damage)
     {
         RectTransform rect = Instantiate(rectDamage, transform);
         rect.anchoredPosition = new Vector2(223, 88);
+        rect.GetComponent<Text>().text = damage.ToString();
 
         float y = rect.anchoredPosition.y;
 
@@ -35,6 +36,6 @@ public class Hp : MonoBehaviour
 
 
         }
-
+        Destroy(rect.gameObject,0.5f);
     }
 }

@@ -32,8 +32,9 @@ public class player : MonoBehaviour
     public float Blood = 200;
     private float hpmax;
     [Header("血條系統")]
-    public Hp hpmanager; 
-        
+    public Hp hpmanager;
+    [Header("攻擊力")]
+    public float attack = 20;
 
     //事件:繪製圖示
     private void OnDrawGizmos()
@@ -69,7 +70,7 @@ public class player : MonoBehaviour
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, rabgeAttack, -transform.up,0, 1 << 8 );
         //print("碰到的物件:" + hit.collider.name);
         if (hit && hit.collider.tag == "道具") hit.collider.GetComponent<item>().DropProp();
-
+        if (hit && hit.collider.tag == "敵人") hit.collider.GetComponent<AI>().hit(attack);
 
     }
     public void hit(float damage)

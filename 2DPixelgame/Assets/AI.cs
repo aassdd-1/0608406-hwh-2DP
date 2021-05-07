@@ -22,6 +22,8 @@ public class AI : MonoBehaviour
     private float hpmax;
     [Header("血條系統")]
     public Hp hpmanager;
+    [Header("死亡")]
+    public bool isDead = false;
 
     private Transform player;
     private float timer;
@@ -53,6 +55,8 @@ public class AI : MonoBehaviour
     /// <summary>
     /// 追蹤玩家
     /// </summary>
+    
+
 
     private void Track()
     {
@@ -90,5 +94,20 @@ public class AI : MonoBehaviour
 
     }
 
+
+    public void hit(float damage)
+    {
+        Blood -= damage;
+        hpmanager.Updatehpbar(Blood, hpmax);
+        StartCoroutine(hpmanager.ShowDamagr(damage));
+
+        if (Blood <= 0) Dead();
+    }
+    private void Dead()
+    {
+        Blood = 0;
+        isDead = true;
+        Destroy(gameObject, 1f);
+    }
 
 }

@@ -35,7 +35,8 @@ public class player : MonoBehaviour
     public Hp hpmanager;
     [Header("攻擊力")]
     public float attack = 20;
-
+    [Header("等級文字")]
+    public Text expText;
     //事件:繪製圖示
     private void OnDrawGizmos()
     {

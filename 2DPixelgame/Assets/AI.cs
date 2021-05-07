@@ -22,16 +22,19 @@ public class AI : MonoBehaviour
     private float hpmax;
     [Header("血條系統")]
     public Hp hpmanager;
-    [Header("死亡")]
-    public bool isDead = false;
-
+  
+    private bool isDead = false;
+    [Header("經驗值")]
+    public float exp = 30;
     private Transform player;
+    private player _player;
     private float timer;
 
     private void Start()
     {
         hpmax = Blood;
         player = GameObject.Find("主角").transform;
+        _player = player.GetComponent<player>();
     }
 
     private void OnDrawGizmos()
@@ -60,6 +63,8 @@ public class AI : MonoBehaviour
 
     private void Track()
     {
+        if (isDead) return;
+        
         //距離 等於 三維向量 的 距離(A點,B點)
         float dis = Vector3.Distance(transform.position, player.position);
         //如果 距離 小於等於 追蹤範圍 才開始追蹤
@@ -87,7 +92,7 @@ public class AI : MonoBehaviour
         {
             timer = 0;
             psAttack.Play();
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, rangeAttack);
+            Collider2D hit = Physics2D.OverlapCircle(transform.position, rangeAttack,1 << 9);
             hit.GetComponent<player>().hit(attack);
         }
 

@@ -102,11 +102,13 @@ public class player : MonoBehaviour
 
     public void Exp(float getexp)
     {
+        expNeed = expData.exp[lv - 1];
+        
         exp += getexp;
         print("經驗值" + exp);
         expime.fillAmount = exp / expNeed;
 
-        if (exp >= expNeed)
+        while (exp >= expNeed)
         {
             lv++;
             expText.text = "LV" + lv;

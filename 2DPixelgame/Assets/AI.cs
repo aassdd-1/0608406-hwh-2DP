@@ -110,9 +110,13 @@ public class AI : MonoBehaviour
     }
     private void Dead()
     {
+        if (isDead) return;
         Blood = 0;
         isDead = true;
         Destroy(gameObject, 1f);
+        _player.Exp(exp);
+
+
     }
 
 }

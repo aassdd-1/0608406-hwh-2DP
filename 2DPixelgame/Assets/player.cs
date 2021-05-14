@@ -37,6 +37,11 @@ public class player : MonoBehaviour
     public float attack = 20;
     [Header("等級文字")]
     public Text expText;
+    [Header("經驗值吧條")]
+    public Image expime;
+
+    private float exp;
+    private float expNeed = 100;
     //事件:繪製圖示
     private void OnDrawGizmos()
     {
@@ -118,5 +123,14 @@ public class player : MonoBehaviour
             texrCoin.text = "金幣:" + coin;
             //print(collision.gameObject);
         }
+    }
+    
+
+    public void Exp(float getexp)
+    {
+        exp += getexp;
+        print("經驗值" + exp);
+        expime.fillAmount = exp / expNeed;
+
     }
 }

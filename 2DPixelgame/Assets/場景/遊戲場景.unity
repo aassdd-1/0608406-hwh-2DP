@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 57416886}
   - component: {fileID: 57416887}
   - component: {fileID: 57416888}
+  - component: {fileID: 57416889}
   m_Layer: 9
   m_Name: "\u4E3B\u89D2"
   m_TagString: Player
@@ -330,6 +331,7 @@ MonoBehaviour:
   attack: 20
   expText: {fileID: 1962423401}
   expime: {fileID: 411953867}
+  expData: {fileID: 11400000, guid: 421062fe13658124a983c28626ee9b1d, type: 2}
   soundEat: {fileID: 8300000, guid: 66d007e0f328c2e40b65261b44ce9521, type: 3}
   texrCoin: {fileID: 367817043}
 --- !u!70 &57416885
@@ -492,6 +494,37 @@ MonoBehaviour:
   attack: 20
   expText: {fileID: 0}
   expime: {fileID: 0}
+  expData: {fileID: 0}
+  soundEat: {fileID: 0}
+  texrCoin: {fileID: 0}
+--- !u!114 &57416889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57416880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee917ae05a665014491b3afe12c1d070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lv: 1
+  speed: 10.5
+  isDead: 0
+  cName: "\u8C93\u54AA"
+  joystick: {fileID: 0}
+  tra: {fileID: 0}
+  ani: {fileID: 0}
+  rabgeAttack: 2.5
+  aud: {fileID: 0}
+  andAttack: {fileID: 0}
+  Blood: 200
+  hpmanager: {fileID: 0}
+  attack: 20
+  expText: {fileID: 0}
+  expime: {fileID: 0}
+  expData: {fileID: 0}
   soundEat: {fileID: 0}
   texrCoin: {fileID: 0}
 --- !u!1001 &85680177

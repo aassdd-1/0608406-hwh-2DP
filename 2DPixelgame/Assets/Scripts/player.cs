@@ -41,6 +41,13 @@ public class player : MonoBehaviour
     public Image expime;
     [Header("經驗值資料")]
     public expdata expData;
+    [Header("金幣音效")]
+    public AudioClip soundEat;
+    [Header("金幣文字")]
+    public Text texrCoin;
+
+    public int coin;
+    public int attackWeapon;
     
     private float exp;
     private float expNeed = 100;
@@ -79,6 +86,7 @@ public class player : MonoBehaviour
         //print("碰到的物件:" + hit.collider.name);
         if (hit && hit.collider.tag == "道具") hit.collider.GetComponent<item>().DropProp();
         if (hit && hit.collider.tag == "敵人") hit.collider.GetComponent<AI>().hit(attack);
+        if (hit && hit.collider.tag == "NPC") hit.collider.GetComponent<NPC>().OpenShop();
 
     }
     public void hit(float damage)
@@ -114,13 +122,23 @@ public class player : MonoBehaviour
             expText.text = "LV" + lv;
             exp -= expNeed;
             expime.fillAmount = exp / expNeed;
-
+            expNeed = expData.exp[lv - 1];
+            Levelup();
         }
 
     }
 
+    private void Levelup()
+    {
+        attack = 20 + (lv - 1) * 10;
+        hpmax = 200 + (lv - 1) * 50;
+    }
+
     private void Start()
     {
+        coin = 10;
+        texrCoin.text = "金幣" + coin;
+
         hpmax = Blood;
 
         for(int i=0; i < 14; i++)
@@ -132,12 +150,7 @@ public class player : MonoBehaviour
     {
         Move();
     }
-    [Header("金幣音效")]
-    public AudioClip soundEat;
-    [Header("金幣文字")]
-    public Text texrCoin;
-
-    private int coin;
+    
 
     //觸發事件-進入:兩個物件其中1個要勾選is Trigger
     private void OnTriggerEnter2D(Collider2D collision)
